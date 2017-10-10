@@ -1,0 +1,17 @@
+<div class="nested-fields row">
+<div class="col-sm-2">
+   <%=f.select :country_id, options_from_collection_for_select(Country.all, "id", "dial_code",f.object.country_id),{}, {class:"form-control",required: true}%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :area_code, id: :area_code,class:"form-control",placeholder: "Area Code" ,required: true%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :fax_number, id: :fax_number ,class:"form-control",placeholder: "Fax Number",required: true%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :alternate_number, id: :alternate_number,class:"form-control",placeholder: "Alternate Number" %>
+  </div> 
+  <div class="col-sm-1">
+    <%= link_to_remove_association "Remove", f,class:"btn btn-default",:soft_destroy => false%>
+  </div> 
+</div>

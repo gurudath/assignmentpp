@@ -1,0 +1,49 @@
+<% if @contact.errors.any? %>
+   <%= errors_for(@contact) %>
+<% end %>
+<%= semantic_form_for(@contact , :html => { :class => "form-horizontal"} )do |f| %>
+  <%= f.inputs do %>
+    <div class="form-group">
+      <%= f.label :name, class:"control-label col-sm-2", for:"name" %>
+      <%= f.text_field :name, id: :contact_name ,class:"col-sm-6 form-control",required: true%>
+    </div>
+    <div class="form-group">
+      <%= f.label :email , class:"control-label col-sm-2", for:"email"%>
+      <%= f.email_field :email, id: :contact_email ,class:"col-sm-10 form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :date_of_birth, class:"control-label col-sm-2", for:"date_of_birth" %>
+      <%= f.text_field :bdate, id: :contact_bdate ,"data-provide":"datepicker","data-date-format":"dd/mm/yyyy",class:"col-sm-10 form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :anniversy, class:"control-label col-sm-2", for:"anniversy" %>
+      <%= f.text_field :anniv, id: :contact_anniv ,"data-provide":"datepicker","data-date-format":"dd/mm/yyyy" ,class:"col-sm-10 form-control"%>
+    </div>
+    <div class="form-group">
+          <%= f.label :address, class:"control-label col-sm-12", for:"address" %>
+    <div>
+    <div id="address">
+       <%= f.semantic_fields_for :addresses do |address| %>
+          <%= render 'address', f: address %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Address', f, :addresses ,class:"btn btn-primary add_address"%>
+      </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :phone_number, class:"control-label col-sm-12", for:"phone_number" %>
+    <div>
+    <div id="phone">
+      <%= f.semantic_fields_for :phone_numbers do |phone| %>
+        <%= render 'phone_number', f: phone %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Phone Number', f, :phone_numbers ,class:"btn btn-primary add_phone"%>
+      </div>
+    </div>
+    <div class="form-group" style="margin-top: 10px;">
+      <%= f.submit :submit,  class:"btn btn-success create_contact",label: "Create" %>
+      <%= link_to 'Back', contacts_path ,  class:"btn btn-primary back"%>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="nested-fields row">
+  <div class="col-sm-2">
+   <%=f.select :country_id, options_from_collection_for_select(Country.all, "id", "name",f.object.country_id),{}, {class:"form-control",required: true}%>
+  </div>
+  <div class="col-sm-3">
+    <%= f.text_field :street, id: :address_street ,class:"form-control",placeholder: "Street",required: true,required: true%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :city, id: :address_city,class:"form-control",placeholder: "City" ,required: true%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :state, id: :address_state ,class:"form-control",placeholder: "State",required: true%>
+  </div>
+  <div class="col-sm-2">
+    <%= f.text_field :zipcode, id: :address_zipcode,class:"form-control",placeholder: "Zipcode",required: true%>
+  </div> 
+  <div class="col-sm-1">
+    <%= link_to_remove_association "Remove",f ,{class:"btn btn-default",:soft_destroy => false}%>
+  </div> 
+</div>

@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+<h1>Contact Details : <%=@contact.name%></h1>
+<div class="col-md-10 col-md-offset-1" style="margin-top: 15px;">
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-10">
+            <h3 class="panel-title"><b>Contact Details</b></h3>
+          </div>
+          <div class="col col-xs-1 text-right">
+            <%= link_to 'Edit', edit_contact_path(@contact) ,class:"btn btn-sm btn-primary btn-create"%>
+          </div>
+          <div class="col col-xs-1 text-right">
+            <%= link_to 'Back', contacts_path ,class:"btn btn-sm btn-primary btn-create"%>
+          </div>
+      </div>
+    </div>
+	<table class="table table-user-information">
+		<tbody>
+		  <tr>
+		    <td><strong>Email:</strong></td>
+		    <td><%= @contact.email %></td>
+		  </tr>
+		  	  <tr>
+		    <td><strong>Date Of Birth:</strong></td>
+		    <td><%= @contact.bdate.strftime("%d/%m/%Y") %></td>
+		  </tr>
+		  	  <tr>
+		    <td><strong>Anniversy:</strong></td>
+		    <td><%= @contact.anniv.strftime("%d/%m/%Y") %></td>
+		  </tr>
+		</tbody>
+	</table>  
+	</div>	 
+</div>	
+<div class="col-md-10 col-md-offset-1" style="margin-top: 15px;">
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-10">
+            <h3 class="panel-title"><b>Address Details</b></h3>
+          </div>
+      </div>
+    </div>
+	<table class="table table-user-information">
+		<tbody>
+		  <%if @contact.addresses.present?%>
+			  <%@contact.addresses.pluck(:street,:city,:state,:zipcode).each do |address|%>
+		  	  <tr>
+		    	<td><%= address.to_sentence(last_word_connector: ',') %></td>
+		      </tr>
+		      <%end%>
+	      <%else%>
+ 			  <tr>
+		    	<td>No Address Found</td>
+		      </tr>
+	      <%end%>
+		</tbody>
+	</table> 
+	</div>	
+</div>	
+<div class="col-md-10 col-md-offset-1" style="margin-top: 15px;">
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-xs-10">
+            <h3 class="panel-title"><b>Phone Numbers Details</b></h3>
+          </div>
+      </div>
+    </div>
+	<table class="table table-user-information">
+	    <thead>
+	    	<tr>
+	    	  <th>Primary Number</th>
+	    	  <th>Alternate Number</th>
+	    	</tr>
+	    </thead>
+		<tbody>
+		  <%if @contact.phone_numbers.present?%>
+			  <%@contact.phone_numbers.each do |phone|%>
+		  	  <tr>
+		    	<td><%= phone.country.dial_code.to_s+phone.area_code.to_s+phone.fax_number.to_s%></td>
+		    	<td><%=phone.alternate_number%>
+		      </tr>
+		      <%end%>
+	      <%else%>
+ 			  <tr>
+		    	<td>No Phone Numbers Found</td>
+		      </tr>
+	      <%end%>
+		</tbody>
+	</table> 
+	</div>	
+</div>	
