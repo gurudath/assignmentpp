@@ -4,10 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'pg'
 # Use Puma as the app server
-# gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -50,11 +50,11 @@ end
 
 gem 'devise'
 
-#gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
+gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 gem 'devise_ldap_authenticatable'
 gem 'cancancan', '~> 1.10'
 gem 'rolify'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'therubyracer', platforms: :ruby
 group :development, :test do
